@@ -1,7 +1,20 @@
+import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 
-const httpServer = createServer();
+const app = express();
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, PUT, PATCH, DELETE'
+  );
+
+  next();
+});
+
+const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: { origin: '*' },
 });
