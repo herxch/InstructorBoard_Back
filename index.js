@@ -69,4 +69,6 @@ io.on('connection', (socket) => {
   });
 });
 
-httpServer.listen(process.env.PORT || 8080);
+httpServer.listen(process.env.PORT || 8080, () =>
+  console.log(`Server has started on port ${process.env.PORT}`)
+);
