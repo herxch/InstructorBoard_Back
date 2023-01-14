@@ -4,14 +4,14 @@ import { Server } from 'socket.io';
 import cors from 'cors';
 
 const app = express();
-app.use(
-  cors({
-    origin: 'http://localhost:3000',
-  })
-);
-
 const httpServer = createServer(app);
 const io = new Server(httpServer);
+
+app.use(
+  cors({
+    origin: '*',
+  })
+);
 
 let users = [];
 let answers = [];
