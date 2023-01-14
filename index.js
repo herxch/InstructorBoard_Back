@@ -1,27 +1,31 @@
-import express from 'express';
+// import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
-import cors from 'cors';
+// import cors from 'cors';
 
 const app = express();
 const httpServer = createServer(app);
-const io = new Server(httpServer);
-
-app.use(
-  cors({
-    origin: '*',
-  })
-);
-
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET, POST, PUT, PATCH, DELETE'
-  );
-
-  next();
+const io = new Server(httpServer, {
+  cors: {
+    origin: 'https://ib.herxch.com',
+  },
 });
+
+// app.use(
+//   cors({
+//     origin: '*',
+//   })
+// );
+
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader(
+//     'Access-Control-Allow-Methods',
+//     'GET, POST, PUT, PATCH, DELETE'
+//   );
+
+//   next();
+// });
 
 let users = [];
 let answers = [];
