@@ -1,9 +1,6 @@
-// import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
-// import cors from 'cors';
 
-// const app = express();
 const httpServer = createServer();
 const io = new Server(httpServer, {
   cors: {
@@ -11,22 +8,6 @@ const io = new Server(httpServer, {
     credentials: true,
   },
 });
-
-// app.use(
-//   cors({
-//     origin: '*',
-//   })
-// );
-
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader(
-//     'Access-Control-Allow-Methods',
-//     'GET, POST, PUT, PATCH, DELETE'
-//   );
-
-//   next();
-// });
 
 let users = [];
 let answers = [];
