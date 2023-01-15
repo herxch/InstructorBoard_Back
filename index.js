@@ -3,11 +3,12 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 // import cors from 'cors';
 
-const app = express();
-const httpServer = createServer(app);
+// const app = express();
+const httpServer = createServer();
 const io = new Server(httpServer, {
   cors: {
     origin: 'https://ib.herxch.com',
+    credentials: true,
   },
 });
 
