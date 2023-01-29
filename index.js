@@ -4,7 +4,7 @@ import { Server } from 'socket.io';
 const httpServer = createServer();
 const io = new Server(httpServer, {
   cors: {
-    origin: 'https://ib.herxch.com',
+    origin: process.env.FRONT_URL,
     credentials: true,
   },
 });
@@ -13,6 +13,7 @@ let users = [];
 let answers = [];
 
 io.on('connection', (socket) => {
+  // Student join response
   socket.on('join student', (username) => {
     const user = {
       username,
@@ -25,11 +26,14 @@ io.on('connection', (socket) => {
     socket.join('student');
     io.to('instructor').emit('new user', users);
   });
+
+  // Instructor join response
   socket.on('join instructor', () => {
     socket.join('instructor');
     io.to('instructor').emit('new user', users);
     io.to('instructor').emit('new answer', answers);
   });
+
   socket.on('send answer', (payload) => {
     const answer = {
       ...payload,
