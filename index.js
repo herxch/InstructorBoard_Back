@@ -34,6 +34,7 @@ io.on('connection', (socket) => {
     io.to('instructor').emit('new answer', answers);
   });
 
+  // Student send answer
   socket.on('send answer', (payload) => {
     const answer = {
       ...payload,
@@ -51,6 +52,12 @@ io.on('connection', (socket) => {
     }
     io.to('instructor').emit('new answer', answers);
   });
+
+  // Instructor set timer
+  socket.on('set timer', (timer) => {
+    io.emit('start timer', timer);
+  });
+
   socket.on('disconnect', () => {
     users = users.filter((u) => u.id !== socket.id);
     answers = answers.filter((u) => u.id !== socket.id);
