@@ -15,9 +15,9 @@ const io = new Server(httpServer, {
 // let answers = [];
 
 io.on('connection', (socket) => {
-  socket.on('connect', () => {
+ 
       console.log('client connected')
-    });
+ 
   // Student join response
   // socket.on('join student', (username) => {
   //   const user = {
