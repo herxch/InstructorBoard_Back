@@ -3,6 +3,10 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 
 const app = express();
+
+app.use((req, res, next)=>{
+  res.send('<h1>Hello!</h1>')
+})
 // const httpServer = createServer(app);
 // const io = new Server(httpServer, {
   // pingInterval: 24 * 60 * 60 * 1000,
