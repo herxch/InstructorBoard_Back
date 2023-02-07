@@ -1,10 +1,13 @@
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 
-const httpServer = createServer();
+const httpServer = createServer((req, res)=>{
+  res.write('<h1>Hello</h1>')
+  res.end()
+});
 const io = new Server(httpServer, {
-  pingInterval: 24 * 60 * 60 * 1000,
-    pingTimeout: 3 * 24 * 60 * 60 * 1000,
+  // pingInterval: 24 * 60 * 60 * 1000,
+  //   pingTimeout: 3 * 24 * 60 * 60 * 1000,
   cors: {
     origin: process.env.FRONT_URL,
     credentials: true,
