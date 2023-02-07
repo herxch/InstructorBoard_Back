@@ -6,23 +6,24 @@ const app = express();
 
 app.use((req, res, next)=>{
   res.send('<h1>Hello!</h1>')
+  next()
 })
-// const httpServer = createServer(app);
-// const io = new Server(httpServer, {
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
   // pingInterval: 24 * 60 * 60 * 1000,
   //   pingTimeout: 3 * 24 * 60 * 60 * 1000,
-//   cors: {
-//     origin: process.env.FRONT_URL,
-//     credentials: true,
-//   },
-// });
+  cors: {
+    origin: process.env.FRONT_URL,
+    credentials: true,
+  },
+});
 
 // let users = [];
 // let answers = [];
 
-// io.on('connection', (socket) => {
+ io.on('connection', (socket) => {
  
-//   console.log('client connected')
+  console.log('client connected')
  
   // Student join response
   // socket.on('join student', (username) => {
@@ -75,8 +76,8 @@ app.use((req, res, next)=>{
   //   io.to('instructor').emit('new user', users);
   //   io.to('instructor').emit('new answer', answers);
   // });
-// });
+ });
 
-app.listen(process.env.PORT || 8080, () =>
+httpServer.listen(process.env.PORT || 8080, () =>
   console.log(`Server has started on port ${process.env.PORT}`)
 );
