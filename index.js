@@ -58,6 +58,13 @@ io.on('connection', (socket) => {
     io.to('instructor').emit('new answer', answers);
   });
 
+// Instuctor send question
+socket.on('send question', (payload) => {
+    io.emit('new question', payload.question);
+});
+
+
+
   // Instructor set timer
   socket.on('set timer', (timer) => {
     io.emit('start timer', timer);
