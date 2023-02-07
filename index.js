@@ -1,7 +1,9 @@
-import { createServer } from 'http';
-import { Server } from 'socket.io';
+import express from "express";
+import { createServer } from "http";
+import { Server } from "socket.io";
 
-const httpServer = createServer();
+const app = express();
+const httpServer = createServer(app);
 const io = new Server(httpServer, {
   // pingInterval: 24 * 60 * 60 * 1000,
   //   pingTimeout: 3 * 24 * 60 * 60 * 1000,
@@ -16,7 +18,7 @@ const io = new Server(httpServer, {
 
 io.on('connection', (socket) => {
  
-      console.log('client connected')
+  console.log('client connected')
  
   // Student join response
   // socket.on('join student', (username) => {
